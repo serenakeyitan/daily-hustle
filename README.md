@@ -1,4 +1,4 @@
-# hustle-daily — 搞钱日报
+# hustle-daily
 
 Daily newsletter skill that curates 5 low-barrier money-making ideas from Reddit and Twitter/X.
 
@@ -9,17 +9,17 @@ When triggered, the skill:
 2. Searches Twitter/X for side hustle content
 3. Deduplicates against a 30-day rolling history
 4. Agent curates the best 5 ideas — rejects ads/MLM/scams, prefers genuine low-barrier opportunities
-5. Outputs a Chinese mini-newsletter with one-sentence summaries + bullet points + source links
+5. Outputs a mini-newsletter with one-sentence summaries + bullet points + source links
 
 ## Output format
 
 ```
-搞钱日报 | 2026-03-08
+Hustle Daily | 2026-03-08
 
-1. 用AI批量生成婚礼请柬模板，Etsy上月入$2K
-   • 工具：Canva + ChatGPT，零设计基础
-   • 启动成本 < $50
-   → https://reddit.com/r/sidehustle/...
+1. Bulk-generate wedding invitation templates with AI and sell on Etsy for $2K/month
+   - Tools: Canva + ChatGPT, zero design skills needed
+   - Startup cost < $50
+   -> https://reddit.com/r/sidehustle/...
 
 2. ...
 (5 items total)

@@ -21,7 +21,7 @@ SUBREDDITS = [
 ]
 
 HEADERS = {
-    "User-Agent": "gaoqian-daily/1.0 (linux; bot)",
+    "User-Agent": "hustle-daily/1.0 (linux; bot)",
 }
 
 THIRTY_DAYS_AGO = time.time() - 30 * 86400

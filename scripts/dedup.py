@@ -13,7 +13,8 @@ import os
 import sys
 from datetime import datetime, timedelta
 
-STATE_FILE = "/root/.openclaw/workspace/memory/hustle-daily-seen.json"
+SKILL_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATE_FILE = os.path.join(SKILL_DIR, "data", "seen.json")
 
 
 def load_state() -> dict:

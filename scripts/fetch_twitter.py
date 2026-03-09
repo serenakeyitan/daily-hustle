@@ -2,10 +2,14 @@
 """Search Twitter for side-hustle content via twitter_client.py."""
 
 import json
+import os
 import subprocess
 import sys
 
-TWITTER_CLIENT = "/root/.openclaw/skills/twitter-scraper/scripts/twitter_client.py"
+# Try to find twitter-scraper as a sibling skill
+_SKILL_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+_SKILLS_DIR = os.path.dirname(_SKILL_DIR)
+TWITTER_CLIENT = os.path.join(_SKILLS_DIR, "twitter-scraper", "scripts", "twitter_client.py")
 
 QUERIES = [
     "side hustle",

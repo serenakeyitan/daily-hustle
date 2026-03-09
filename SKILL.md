@@ -10,10 +10,19 @@ Curated daily newsletter of 5 low-barrier money-making ideas sourced from Reddit
 
 ## Flow
 
+### Step 0: Check today's cache FIRST
+
+```bash
+python3 scripts/cache.py check
+```
+
+- **Exit 0**: Today's newsletter is already generated. Output it directly to the user. **STOP here — do NOT fetch or regenerate.**
+- **Exit 1**: No cache for today. Continue to Step 1.
+
 ### Step 1: Fetch raw candidates
 
 ```bash
-python3 /root/.openclaw/skills/hustle-daily/scripts/run.py
+python3 scripts/run.py
 ```
 
 This outputs up to 30 JSON candidates sorted by score. Each item has:
@@ -63,29 +72,37 @@ Translate/localize each idea into Chinese. Use this exact format:
 数据来源：Reddit, Twitter/X
 ```
 
-### Step 4: Mark seen items and cleanup
+### Step 4: Save cache, mark seen, cleanup
 
-After finalizing the 5 picks, mark them as seen so they won't appear again:
+Save the newsletter to cache so other users today get the same result:
 
 ```bash
-echo '<JSON array of the 5 picked items>' | python3 /root/.openclaw/skills/hustle-daily/scripts/dedup.py mark
+echo '<the formatted newsletter text>' | python3 scripts/cache.py save
 ```
 
-Then prune old entries:
+Mark picked items as seen:
 
 ```bash
-python3 /root/.openclaw/skills/hustle-daily/scripts/dedup.py cleanup
+echo '<JSON array of the 5 picked items>' | python3 scripts/dedup.py mark
+```
+
+Cleanup old entries:
+
+```bash
+python3 scripts/dedup.py cleanup
+python3 scripts/cache.py cleanup
 ```
 
 ### Step 5: Output the newsletter
 
-Output the formatted newsletter text. The caller decides where to send it (Discord, Feishu, etc.).
+Output the formatted newsletter text to the user.
 
 ## Data Files
 
 | File | Location | Purpose |
 |------|----------|---------|
-| Seen items | `workspace/memory/hustle-daily-seen.json` | 30-day dedup state |
+| Seen items | `data/seen.json` | 30-day dedup state |
+| Daily cache | `data/cache/YYYY-MM-DD.md` | Pre-generated newsletter (7-day retention) |
 
 ## Scripts
 
@@ -95,3 +112,4 @@ Output the formatted newsletter text. The caller decides where to send it (Disco
 | `scripts/fetch_twitter.py` | Search Twitter via twitter_client.py |
 | `scripts/dedup.py` | 30-day rolling dedup manager |
 | `scripts/run.py` | Orchestrator: fetch + dedup + output candidates |
+| `scripts/cache.py` | Daily cache: check/save/cleanup (Beijing time) |
